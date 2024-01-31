@@ -88,3 +88,10 @@ main {
     margin-top: 5px;
 
 }
+
+.celsius {
+    display: flex;
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
