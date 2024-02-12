@@ -95,3 +95,21 @@ main {
     font-size: 30px;
     font-weight: bold;
 }
+
+.weather.forecast {
+    display: inline-block;
+}
+
+.weather-forecast-day {
+    font-size:18px;
+    opacity: 0.5;
+}
+
+.weather-forecast-maximum {
+    text-align: center;
+}
+
+.weather-forecast-minimum {
+    text-align: center;
+    opacity: 0.6;
+}

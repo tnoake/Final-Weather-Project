@@ -13,6 +13,8 @@ timeElement.innerHTML = formatDate(date);
 descriptionElement.innerHTML = response.data.condition.description;
 humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
 windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+
+getForecast(response.data.city);
 }
 
 function formatDate(date){
@@ -48,9 +50,40 @@ function handleSearchSubmit(event) {
     searchCity(searchInput.value)
 }
 
+function getForecast(city) {
+    let apiKey = "6073b08ba5624acaad3a42eof1at9c53"
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`
+    acious(apiUrl).then(displayForecast);
+}
+
+
+function displayForecast() {
+    let forecast = document.querySelector("#weather-forecast");
+
+    forecast.innerHTML = `
+    <div class="weather-forecast" id="weather-forecast">
+                <table class="row">
+                    <tr>
+                        <div class="col-2">
+                            <div class="weather-forecast-day">Thu</div>
+                            <div><img class="weather-icon"
+                                    src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/sun.png"
+                                    width="36" /></div>
+                            <div class="weather-forecast-temperature">
+                                <span class="weather-forecast-maximum">18º</span>
+                                <span class="weather-forecast-minimum">12º</span>
+                            </div>
+                        </div>
+                    </tr>
+                </table>
+            </div>`;
+}
+
+
 let searchFormElement = document.querySelector("#search-form");
 
 searchFormElement.addEventListener("submit", handleSearchSubmit)
 
 
+ let forecast = document.querySelector("#weather-forecast");
 
