@@ -7,14 +7,14 @@ let humidityElement = document.querySelector("#humidity");
 let windSpeedElement = document.querySelector("#wind-speed");
 let timeElement = document.querySelector("#time");
 let date = new Date(response.data.time * 1000);
+let iconElement = document.querySelector("#weather-app-icon");
 
 timeElement.innerHTML = formatDate(date);
 
 descriptionElement.innerHTML = response.data.condition.description;
 humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
 windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
-
-getForecast(response.data.city);
+iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
 }
 
 function formatDate(date){
@@ -40,27 +40,8 @@ axios.get(apiUrl).then(refreshWeather);
 }
 
 
-function displayForecast() {
-    let forecastElement = document.querySelector("#forecast");
+console.log(searchCity);
 
-    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
-    let forecastHtml = ""
-
-    
-    days.forEach(function (day) {
-    forecastHtml = forecastHtml + `
-    <div class="weather-forecast-day">${day}</div>
-                <div><img class="weather-icon"
-                        src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/sun.png"
-                        width="36" /></div>
-                <div class="weather-forecast-temperature">
-                    <span class="weather-forecast-maximum">18º</span>
-                    <span class="weather-forecast-minimum">12º</span>
-                </div>
-                `;
-});
-forecastElement.innerHTML = forecastHtml;
-}
 
 function handleSearchSubmit(event) {
     event.preventDefault();
@@ -68,21 +49,11 @@ function handleSearchSubmit(event) {
     let cityElement = document.querySelector("#weather-app-city");
     cityElement.innerHTML = searchInput.value;
     searchCity(searchInput.value)
-}
-
-function getForecast(city) {
-    let apiKey = "6073b08ba5624acaad3a42eof1at9c53"
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`
-    acious(apiUrl).then(displayForecast)};
-        
-
-
+};
 
 let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchFormElement.addEventListener("submit", handleSearchSubmit)
-
-displayForecast();
 
 
    
