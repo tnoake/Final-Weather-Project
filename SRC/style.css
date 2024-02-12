@@ -97,19 +97,24 @@ main {
 }
 
 .weather.forecast {
-    display: inline-block;
+    display: inline;
+
 }
 
 .weather-forecast-day {
     font-size:18px;
     opacity: 0.5;
+    display: inline;
 }
 
 .weather-forecast-maximum {
     text-align: center;
+    display: inline;
 }
 
 .weather-forecast-minimum {
     text-align: center;
     opacity: 0.6;
+    display: inline;
 }
+

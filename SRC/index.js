@@ -40,7 +40,27 @@ axios.get(apiUrl).then(refreshWeather);
 }
 
 
+function displayForecast() {
+    let forecastElement = document.querySelector("#forecast");
 
+    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+    let forecastHtml = ""
+
+    
+    days.forEach(function (day) {
+    forecastHtml = forecastHtml + `
+    <div class="weather-forecast-day">${day}</div>
+                <div><img class="weather-icon"
+                        src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/sun.png"
+                        width="36" /></div>
+                <div class="weather-forecast-temperature">
+                    <span class="weather-forecast-maximum">18º</span>
+                    <span class="weather-forecast-minimum">12º</span>
+                </div>
+                `;
+});
+forecastElement.innerHTML = forecastHtml;
+}
 
 function handleSearchSubmit(event) {
     event.preventDefault();
@@ -53,37 +73,16 @@ function handleSearchSubmit(event) {
 function getForecast(city) {
     let apiKey = "6073b08ba5624acaad3a42eof1at9c53"
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`
-    acious(apiUrl).then(displayForecast);
-}
+    acious(apiUrl).then(displayForecast)};
+        
 
-
-function displayForecast() {
-    let forecast = document.querySelector("#weather-forecast");
-
-    forecast.innerHTML = `
-    <div class="weather-forecast" id="weather-forecast">
-                <table class="row">
-                    <tr>
-                        <div class="col-2">
-                            <div class="weather-forecast-day">Thu</div>
-                            <div><img class="weather-icon"
-                                    src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/sun.png"
-                                    width="36" /></div>
-                            <div class="weather-forecast-temperature">
-                                <span class="weather-forecast-maximum">18º</span>
-                                <span class="weather-forecast-minimum">12º</span>
-                            </div>
-                        </div>
-                    </tr>
-                </table>
-            </div>`;
-}
 
 
 let searchFormElement = document.querySelector("#search-form");
 
 searchFormElement.addEventListener("submit", handleSearchSubmit)
 
+displayForecast();
 
- let forecast = document.querySelector("#weather-forecast");
 
+   
